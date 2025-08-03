@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36327.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeatReservationService.Api", "SeatReservationService.Api\SeatReservationService.Api.csproj", "{80059727-05CF-4EEC-A1D1-C9457D59BA9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeatReservation.Domain", "SeatReservation.Domain\SeatReservation.Domain.csproj", "{F1BB9750-46FA-4FEF-86F0-5BDC8E305124}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80059727-05CF-4EEC-A1D1-C9457D59BA9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80059727-05CF-4EEC-A1D1-C9457D59BA9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80059727-05CF-4EEC-A1D1-C9457D59BA9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80059727-05CF-4EEC-A1D1-C9457D59BA9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1BB9750-46FA-4FEF-86F0-5BDC8E305124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BB9750-46FA-4FEF-86F0-5BDC8E305124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BB9750-46FA-4FEF-86F0-5BDC8E305124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BB9750-46FA-4FEF-86F0-5BDC8E305124}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10B79B19-88E2-4151-8BFF-E2CD7BD04DF1}
+	EndGlobalSection
+EndGlobal
