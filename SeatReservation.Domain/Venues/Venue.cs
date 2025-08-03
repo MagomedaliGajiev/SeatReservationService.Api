@@ -4,9 +4,9 @@ namespace SeatReservation.Domain.Venues;
 
 public class Venue
 {
-    private List<Seat> _seats = [];
+    private List<Seat> _seats;
 
-    public Venue(Guid id, string name, int maxSeatsCount, IEnumerable<Seat> seats)
+    public Venue(VenueId id, VenueName name, int maxSeatsCount, IEnumerable<Seat> seats)
     {
         Id = id;
         Name = name;
@@ -14,9 +14,9 @@ public class Venue
         _seats =seats.ToList();
     }
 
-    public Guid Id { get; }
+    public VenueId Id { get; }
 
-    public string Name { get; private set; }
+    public VenueName Name { get; private set; }
 
     public int SeatLimit { get; private set; }
 
@@ -36,3 +36,5 @@ public class Venue
 
     public void ExpandSeatsLimit(int newSeatsLimit) => SeatLimit = newSeatsLimit;
 }
+
+public record VenueId(Guid Value);
