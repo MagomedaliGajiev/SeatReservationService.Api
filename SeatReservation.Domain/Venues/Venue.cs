@@ -2,6 +2,8 @@
 
 namespace SeatReservation.Domain.Venues;
 
+public record VenueId(Guid Value);
+
 public class Venue
 {
     private List<Seat> _seats = [];
@@ -42,5 +44,3 @@ public class Venue
 
     public void ExpandSeatsLimit(int newSeatsLimit) => SeatLimit = newSeatsLimit;
 }
-
-public record VenueId(Guid Value);

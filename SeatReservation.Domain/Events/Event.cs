@@ -1,4 +1,8 @@
-﻿namespace SeatReservation.Domain.Events;
+﻿using SeatReservation.Domain.Venues;
+
+namespace SeatReservation.Domain.Events;
+
+public record EventId(Guid Value);
 
 public class Event
 {
@@ -8,7 +12,7 @@ public class Event
         
     }
 
-    public Event(EventId id, Guid venueId, EventDetails eventDetails, string name, DateTime eventDate)
+    public Event(EventId id, VenueId venueId, EventDetails eventDetails, string name, DateTime eventDate)
     {
         Id = id;
         Details = eventDetails;
@@ -21,11 +25,9 @@ public class Event
 
     public EventDetails Details { get; private set; }
 
-    public Guid VenueId { get; private set; } 
+    public VenueId VenueId { get; private set; } 
 
     public string Name { get; private set; }
 
     public DateTime EventDate { get; private set; }
 }
-
-public record EventId(Guid Value);

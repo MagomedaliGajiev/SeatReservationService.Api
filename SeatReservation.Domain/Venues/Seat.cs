@@ -2,6 +2,8 @@
 
 namespace SeatReservation.Domain.Venues;
 
+public record SeatId(Guid Value);
+
 public class Seat
 {
     //EF Core
@@ -33,5 +35,3 @@ public class Seat
         return new Seat(new SeatId(Guid.NewGuid()), rowNumber, seatNumber);
     }
 }
-
-public record SeatId(Guid Value);

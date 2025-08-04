@@ -1,6 +1,9 @@
 ﻿using CSharpFunctionalExtensions;
+using SeatReservation.Domain.Events;
 
 namespace SeatReservation.Domain.Reservations;
+
+public record ReservationId(Guid Value);
 
 public class Reservation
 {
@@ -10,7 +13,7 @@ public class Reservation
     {
         
     }
-    public Reservation(ReservationId id, Guid eventId, Guid userId, IEnumerable<Guid> seatIds)
+    public Reservation(ReservationId id, EventId eventId, Guid userId, IEnumerable<Guid> seatIds)
     {
         Id = id;
         EventId = eventId;
@@ -26,7 +29,7 @@ public class Reservation
 
     public ReservationId Id { get; private set; }
 
-    public Guid EventId { get; private set;}
+    public EventId EventId { get; private set;}
 
     public Guid UserId { get; private set; }
 
@@ -36,5 +39,3 @@ public class Reservation
 
     public IReadOnlyList<ReservationSeat> Seats => _reservedSeats;
 }
-
-public record ReservationId(Guid Value);

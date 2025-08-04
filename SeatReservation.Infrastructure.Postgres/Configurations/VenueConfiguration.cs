@@ -27,7 +27,7 @@ public class VenueConfiguration : IEntityTypeConfiguration<Venue>
             nb.Property(v => v.Prefix)
             .IsRequired()
             .HasMaxLength(LengthConstants.LENGTH50)
-            .HasColumnName("prifix");
+            .HasColumnName("prefix");
 
             nb.Property(v => v.Name)
             .IsRequired()
