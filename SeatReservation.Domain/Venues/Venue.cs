@@ -24,7 +24,7 @@ public class Venue
 
     public VenueId Id { get; } = null!;
 
-    public VenueName? Name { get; private set; }
+    public VenueName Name { get; private set; }
 
     public int SeatLimit { get; private set; }
 

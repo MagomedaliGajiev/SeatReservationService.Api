@@ -16,13 +16,7 @@ public class VenueConfiguration : IEntityTypeConfiguration<Venue>
         builder.Property(v => v.Id)
             .HasConversion(v => v.Value, id => new VenueId(id));
 
-        builder
-            .Property(v => v.Name)
-            .IsRequired()
-            .HasMaxLength(LengthConstants.LENGTH500)
-            .HasColumnName("name");
-
-        builder.OwnsOne(v => v.Name, nb =>
+        builder.ComplexProperty(v => v.Name, nb =>
         {
             nb.Property(v => v.Prefix)
             .IsRequired()
@@ -34,7 +28,5 @@ public class VenueConfiguration : IEntityTypeConfiguration<Venue>
             .HasMaxLength(LengthConstants.LENGTH500)
             .HasColumnName("name");
         });
-
-        builder.Navigation(v => v.Name).IsRequired(false);
     }
 }
