@@ -2,7 +2,13 @@
 
 public class Event
 {
-    public Event(Guid id, Guid venueId, EventDetails eventDetails, string name, DateTime eventDate)
+    //EF Core
+    public Event()
+    {
+        
+    }
+
+    public Event(EventId id, Guid venueId, EventDetails eventDetails, string name, DateTime eventDate)
     {
         Id = id;
         Details = eventDetails;
@@ -11,7 +17,7 @@ public class Event
         EventDate = eventDate;
     }
 
-    public Guid Id { get; private set; }
+    public EventId Id { get; private set; }
 
     public EventDetails Details { get; private set; }
 
@@ -21,3 +27,5 @@ public class Event
 
     public DateTime EventDate { get; private set; }
 }
+
+public record EventId(Guid Value);

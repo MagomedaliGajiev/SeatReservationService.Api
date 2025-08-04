@@ -2,13 +2,19 @@
 
 public class EventDetails
 {
+    // EF Core
+    private EventDetails()
+    {
+        
+    }
+
     public EventDetails(int capacity, string description)
     {
         Capacity = capacity;
         Description = description;
     }
 
-    public Guid EventId { get; } = Guid.NewGuid();
+    public EventId EventId { get; }
 
     public int Capacity { get; private set; }
 

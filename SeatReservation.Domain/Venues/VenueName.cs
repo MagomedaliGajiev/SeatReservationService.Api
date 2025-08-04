@@ -4,6 +4,12 @@ namespace SeatReservation.Domain.Venues;
 
 public record VenueName
 {
+    //EF Core
+    private VenueName()
+    {
+        
+    }
+
     private VenueName(string prefix, string name)
     {
         Prefix = prefix;

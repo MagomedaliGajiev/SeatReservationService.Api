@@ -4,14 +4,20 @@ namespace SeatReservation.Domain.Venues;
 
 public class Seat
 {
-    private Seat(Guid id, int rowNumber, int seatNumber)
+    //EF Core
+    private Seat()
+    {
+
+    }
+
+    private Seat(SeatId id, int rowNumber, int seatNumber)
     {
         Id = id;
         RowNumber = rowNumber;
         SeatNumber = seatNumber;
     }
 
-    public Guid Id { get; }
+    public SeatId Id { get; }
 
     public int RowNumber { get; private set; }
 
@@ -24,6 +30,8 @@ public class Seat
             return Error.Validation("seat.rowNumber", "Row number and seat number must be greater than zero");
         }
 
-        return new Seat(Guid.NewGuid(), rowNumber, seatNumber);
+        return new Seat(new SeatId(Guid.NewGuid()), rowNumber, seatNumber);
     }
 }
+
+public record SeatId(Guid Value);

@@ -11,7 +11,10 @@ public class VenueConfiguration : IEntityTypeConfiguration<Venue>
     {
         builder.ToTable("venues");
 
-        builder.HasKey(v => v.Id).HasName("id");
+        builder.HasKey(v => v.Id).HasName("pk_venues");
+
+        builder.Property(v => v.Id)
+            .HasConversion(v => v.Value, id => new VenueId(id));
 
         builder
             .Property(v => v.Name)

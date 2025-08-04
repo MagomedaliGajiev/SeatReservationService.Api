@@ -2,7 +2,13 @@
 
 public class ReservationSeat
 {
-    public ReservationSeat(Guid id, Reservation reservation, Guid seatId)
+    //EF Core
+    private ReservationSeat()
+    {
+
+    }
+
+    public ReservationSeat(ReservationSeatId id, Reservation reservation, Guid seatId)
     {
         Id = id;
         Reservation = reservation;
@@ -10,7 +16,7 @@ public class ReservationSeat
         ReservedAt = DateTime.UtcNow;
     }
 
-    public Guid Id { get; }
+    public ReservationSeatId Id { get; }
 
     public Reservation Reservation { get; private set; }
 
@@ -18,3 +24,5 @@ public class ReservationSeat
 
     public DateTime ReservedAt { get; }
 }
+
+public record ReservationSeatId(Guid Value);

@@ -4,7 +4,13 @@ namespace SeatReservation.Domain.Reservations;
 
 public class Reservation
 {
-    public Reservation(Guid id, Guid eventId, Guid userId, IEnumerable<Guid> seatIds)
+
+    //EF Core
+    private Reservation()
+    {
+        
+    }
+    public Reservation(ReservationId id, Guid eventId, Guid userId, IEnumerable<Guid> seatIds)
     {
         Id = id;
         EventId = eventId;
@@ -13,12 +19,12 @@ public class Reservation
         CreatedAt = DateTime.UtcNow;
 
         var reservedSeats = seatIds
-            .Select(seatId => new ReservationSeat(Guid.NewGuid(), this, seatId)).ToList();
+            .Select(seatId => new ReservationSeat(new ReservationSeatId(Guid.NewGuid()), this, seatId)).ToList();
     }
 
     private readonly List<ReservationSeat> _reservedSeats;
 
-    public Guid Id { get; private set; }
+    public ReservationId Id { get; private set; }
 
     public Guid EventId { get; private set;}
 
@@ -30,3 +36,5 @@ public class Reservation
 
     public IReadOnlyList<ReservationSeat> Seats => _reservedSeats;
 }
+
+public record ReservationId(Guid Value);
