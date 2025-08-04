@@ -13,13 +13,12 @@ public class ReservationSeat
 
     }
 
-    public ReservationSeat(ReservationSeatId id, Reservation reservation, SeatId seatId, EventId eventId)
+    public ReservationSeat(ReservationSeatId id, Reservation reservation, SeatId seatId)
     {
         Id = id;
         Reservation = reservation;
         SeatId = seatId;
         ReservedAt = DateTime.UtcNow;
-        EventId = eventId;
     }
 
     public ReservationSeatId Id { get; }
@@ -27,8 +26,6 @@ public class ReservationSeat
     public Reservation Reservation { get; private set; }
 
     public SeatId SeatId { get; private set; }
-
-    public EventId EventId { get; private set; }
 
     public DateTime ReservedAt { get; }
 }

@@ -1,5 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using SeatReservation.Domain.Events;
+using SeatReservation.Domain.Venues;
 
 namespace SeatReservation.Domain.Reservations;
 
@@ -22,7 +23,7 @@ public class Reservation
         CreatedAt = DateTime.UtcNow;
 
         var reservedSeats = seatIds
-            .Select(seatId => new ReservationSeat(new ReservationSeatId(Guid.NewGuid()), this, seatId)).ToList();
+            .Select(seatId => new ReservationSeat(new ReservationSeatId(Guid.NewGuid()), this, new SeatId(seatId))).ToList();
     }
 
     private readonly List<ReservationSeat> _reservedSeats;
