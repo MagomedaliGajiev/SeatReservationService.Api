@@ -23,7 +23,7 @@ public class Event
 
     public EventId Id { get; private set; }
 
-    public EventDetails Details { get; private set; }
+    public EventDetails Details { get; private set; } = null;
 
     public VenueId VenueId { get; private set; } 
 
