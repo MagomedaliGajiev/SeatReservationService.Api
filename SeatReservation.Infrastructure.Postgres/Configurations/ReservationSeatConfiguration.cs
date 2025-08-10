@@ -15,11 +15,29 @@ public class ReservationSeatConfiguration : IEntityTypeConfiguration<Reservation
 
         builder.Property(rs => rs.Id)
             .HasConversion(rs => rs.Value, id => new ReservationSeatId(id))
-            .HasColumnName("Id");
+            .HasColumnName("id")
+            .HasColumnOrder(0);
 
         builder.Property(rs => rs.SeatId)
             .HasConversion(v => v.Value, seat_id => new SeatId(seat_id))
-            .HasColumnName("seat_id");
+            .HasColumnName("seat_id")
+            .HasColumnOrder(1);
 
+        builder.Property(rs => rs.ReservedAt)
+            .HasColumnName("reserve_at")
+            .HasColumnOrder(2);
+
+        builder
+            .HasOne(rs => rs.Reservation)
+            .WithMany(r => r.ReservedSeats)
+            .HasForeignKey("reservation_id")
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasOne<Seat>()
+            .WithMany()
+            .HasForeignKey(rs =>rs.SeatId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

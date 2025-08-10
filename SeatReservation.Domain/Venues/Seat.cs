@@ -21,6 +21,10 @@ public class Seat
 
     public SeatId Id { get; }
 
+    public Venue Venue { get; private set;  }
+
+    public VenueId VenueId { get; private set; }
+
     public int RowNumber { get; private set; }
 
     public int SeatNumber { get; private set; }

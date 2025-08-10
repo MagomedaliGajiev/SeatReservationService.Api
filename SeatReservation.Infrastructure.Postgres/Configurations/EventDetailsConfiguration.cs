@@ -14,13 +14,22 @@ public class EventDetailsConfiguration : IEntityTypeConfiguration<EventDetails>
 
         builder.Property(ed => ed.EventId)
             .HasConversion(ed => ed.Value, id => new EventId(id))
-            .HasColumnName("event_id");
+            .HasColumnName("event_id")
+            .HasColumnOrder(0);
 
         builder.Property(ed => ed.Capacity)
-            .HasColumnName("capacity");
+            .HasColumnName("capacity")
+            .HasColumnOrder(1);
 
         builder.Property(ed => ed.Description)
-            .HasColumnName("description");
+            .HasColumnName("description")
+            .HasColumnOrder(2);
 
+        builder
+            .HasOne<Event>()
+            .WithOne(e => e.Details)
+            .HasForeignKey<EventDetails>(ed => ed.EventId)
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

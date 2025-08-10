@@ -8,13 +8,14 @@ public record ReservationId(Guid Value);
 
 public class Reservation
 {
+    private readonly List<ReservationSeat> _reservedSeats;
 
     //EF Core
     private Reservation()
     {
         
     }
-    public Reservation(ReservationId id, EventId eventId, Guid userId, IEnumerable<Guid> seatIds)
+    public Reservation(ReservationId id, EventId eventId, UserId userId, IEnumerable<Guid> seatIds)
     {
         Id = id;
         EventId = eventId;
@@ -26,17 +27,15 @@ public class Reservation
             .Select(seatId => new ReservationSeat(new ReservationSeatId(Guid.NewGuid()), this, new SeatId(seatId))).ToList();
     }
 
-    private readonly List<ReservationSeat> _reservedSeats;
-
     public ReservationId Id { get; private set; }
 
     public EventId EventId { get; private set;}
 
-    public Guid UserId { get; private set; }
+    public UserId UserId { get; private set; }
 
     public ReservationStatus Status { get; private set; }
 
     public DateTime CreatedAt { get; private set; }
 
-    public IReadOnlyList<ReservationSeat> Seats => _reservedSeats;
+    public IReadOnlyList<ReservationSeat> ReservedSeats => _reservedSeats;
 }

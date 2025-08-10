@@ -29,5 +29,9 @@ public class Event
 
     public string Name { get; private set; }
 
+    public EventType Type { get; private set; }
+
     public DateTime EventDate { get; private set; }
+
+    public IEventInfo Info { get; private set; }
 }
