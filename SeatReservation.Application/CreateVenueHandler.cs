@@ -6,6 +6,10 @@ namespace SeatReservation.Application;
 
 public class CreateVenueHandler
 {
+    public CreateVenueHandler(ReservationServiceDbContext )
+    {
+        
+    }
     /// <summary>
     /// Этот метод создает плащадку со всеми местами
     /// </summary>
@@ -18,11 +22,18 @@ public class CreateVenueHandler
         // создание доменных моделей
         // var seats = request.Seats.Select(s => Seat.Create(s.RowNumber, s.SeatNumber).Value).ToList();
 
+        var venue = Venue.Create(request.Prefix, request.Name, request.SeatsLimit);
+
+        if (venue.IsFailure)
+        {
+            return venue.Error;
+        }
+
         List<Seat> seats = [];
 
         foreach (var seatRequest in request.Seats)
         {
-            var seat = Seat.Create(seatRequest.RowNumber, seatRequest.SeatNumber);
+            var seat = Seat.Create(venue.Value,seatRequest.RowNumber, seatRequest.SeatNumber);
 
             if (seat.IsFailure)
             {
@@ -30,9 +41,6 @@ public class CreateVenueHandler
             }
             seats.Add(seat.Value);
         }
-
-        var venue = Venue.Create(request.Prefix, request.Name, request.SeatsLimit, seats);
-        
 
         // сохранениедоменных моделей в БД
     }
