@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using SeatReservation.Application;
 using SeatReservation.Domain.Venues;
 
 namespace SeatReservation.Infrastructure.Postgres
 {
-    public class ReservationServiceDbContext : DbContext, IResrvationServiceDbContext
+    public class ReservationServiceDbContext : DbContext
     {
         private readonly string _connectionString;
 

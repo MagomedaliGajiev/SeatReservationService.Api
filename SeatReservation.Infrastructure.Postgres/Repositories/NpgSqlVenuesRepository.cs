@@ -1,24 +1,25 @@
 ﻿using Dapper;
+using SeatReservation.Application.Database;
 using SeatReservation.Domain.Venues;
 using SeatReservation.Infrastructure.Postgres.Database;
 using System.Data;
 
 namespace SeatReservation.Infrastructure.Postgres.Repositories;
 
-public class VenuesRepository
+public class NpgSqlVenuesRepository : IVenuesRepository
 {
-    private readonly NpgsqlConnectionFactory _connectionFactory;
+    private readonly IDbConnectionFactory _connectionFactory;
 
-    public VenuesRepository(NpgsqlConnectionFactory connectionFactory)
+    public NpgSqlVenuesRepository(IDbConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
-    public async Task<Guid> Add(Venue venue)
+    public async Task<Guid> Add(Venue venue, CancellationToken cancellationToken)
     {
         using var connection = await _connectionFactory.CreateConnectionAsync();
 
         const string venueInsertSql = """
-                                        INSERT INTO venues (id, prefix, name, seatslimit)
+                                        INSERT INTO venues (id, prefix, name, seats_limit)
                                         VALUES (@Id, @Prefix, @Name, @SeatsLimit)
                                       """;
 
@@ -27,10 +28,15 @@ public class VenuesRepository
             Id = venue.Id.Value,
             Prefix = venue.Name.Prefix,
             Name = venue.Name.Name,
-            venue = venue.SeatsLimit
+            SeatsLimit = venue.SeatsLimit
         };
 
         await connection.ExecuteAsync(venueInsertSql, venueInsertParams);
+
+        if (!venue.Seats.Any())
+        {
+            return venue.Id.Value;
+        }
 
         const string seatsInsertSql = """
                                         INSERT INTO seats (id, row_number, seat_number, venue_id)
@@ -42,7 +48,7 @@ public class VenuesRepository
             Id = s.Id.Value,
             RowNumber = s.RowNumber,
             SeatNumber = s.SeatNumber,
-            VenueId = venue.Id
+            VenueId = venue.Id.Value
         });
 
         await connection.ExecuteAsync(seatsInsertSql, seatsInsertParams);
