@@ -45,8 +45,11 @@ public class CreateVenueHandler
             seats.Add(seat.Value);
         }
 
+        venue.Value.AddSeats(seats);
+
         // сохранениедоменных моделей в БД
         await _venuesRepository.Add(venue.Value, cancellationToken);
+
 
         return venue.Value.Id.Value;
     }

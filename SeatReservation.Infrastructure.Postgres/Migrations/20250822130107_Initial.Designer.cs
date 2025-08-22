@@ -13,7 +13,7 @@ using SeatReservation.Infrastructure.Postgres;
 namespace SeatReservation.Infrastructure.Postgres.Migrations
 {
     [DbContext(typeof(ReservationServiceDbContext))]
-    [Migration("20250810070717_Initial")]
+    [Migration("20250822130107_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -207,9 +207,9 @@ namespace SeatReservation.Infrastructure.Postgres.Migrations
                         .HasColumnName("id")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("SeatLimit")
+                    b.Property<int>("SeatsLimit")
                         .HasColumnType("integer")
-                        .HasColumnName("seat_limit")
+                        .HasColumnName("seats_limit")
                         .HasColumnOrder(3);
 
                     b.ComplexProperty<Dictionary<string, object>>("Name", "SeatReservation.Domain.Venues.Venue.Name#VenueName", b1 =>

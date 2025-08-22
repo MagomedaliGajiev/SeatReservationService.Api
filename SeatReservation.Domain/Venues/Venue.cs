@@ -31,6 +31,8 @@ public class Venue
 
     public IReadOnlyList<Seat> Seats => _seats;
 
+    public void AddSeats(IEnumerable<Seat> seats) => _seats.AddRange(seats);
+
     public UnitResult<Error> AddSeat(Seat seat)
     {
         if (SeatsCount >= SeatsLimit)
@@ -48,7 +50,8 @@ public class Venue
     public static Result<Venue, Error> Create(
         string prefix,
         string name,
-        int seatsLimit)
+        int seatsLimit,
+         VenueId? venueId = null)
     {
         if (seatsLimit <= 0)
         {

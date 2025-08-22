@@ -45,7 +45,7 @@ namespace SeatReservation.Infrastructure.Postgres.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     prefix = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     name = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    seat_limit = table.Column<int>(type: "integer", nullable: false)
+                    seats_limit = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

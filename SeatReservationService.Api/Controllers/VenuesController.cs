@@ -13,8 +13,12 @@ public class VenuesController : ControllerBase
         [FromBody] CreateVenueRequest request,
         CancellationToken cancellationToken)
     {
-        var result = handler.Handle(request, cancellationToken);
+        var result = await handler.Handle(request, cancellationToken);
 
-        return Ok(result);
+        if (result.IsSuccess)
+            return Ok(new { Id = result.Value });
+
+        else
+            return BadRequest(new { Error = result.Error.Message });
     }
 }
